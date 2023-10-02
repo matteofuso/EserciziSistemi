@@ -1,0 +1,8 @@
+C:\Users\matteo\OneDrive - elFusoo\Desktop\Scrivania\Programmazione\C#\EserciziSistemi\Conversioni\bin\Debug\Conversioni.exe.config
+C:\Users\matteo\OneDrive - elFusoo\Desktop\Scrivania\Programmazione\C#\EserciziSistemi\Conversioni\bin\Debug\Conversioni.exe
+C:\Users\matteo\OneDrive - elFusoo\Desktop\Scrivania\Programmazione\C#\EserciziSistemi\Conversioni\bin\Debug\Conversioni.pdb
+C:\Users\matteo\OneDrive - elFusoo\Desktop\Scrivania\Programmazione\C#\EserciziSistemi\Conversioni\obj\Debug\Conversioni.csproj.AssemblyReference.cache
+C:\Users\matteo\OneDrive - elFusoo\Desktop\Scrivania\Programmazione\C#\EserciziSistemi\Conversioni\obj\Debug\Conversioni.csproj.SuggestedBindingRedirects.cache
+C:\Users\matteo\OneDrive - elFusoo\Desktop\Scrivania\Programmazione\C#\EserciziSistemi\Conversioni\obj\Debug\Conversioni.csproj.CoreCompileInputs.cache
+C:\Users\matteo\OneDrive - elFusoo\Desktop\Scrivania\Programmazione\C#\EserciziSistemi\Conversioni\obj\Debug\Conversioni.exe
+C:\Users\matteo\OneDrive - elFusoo\Desktop\Scrivania\Programmazione\C#\EserciziSistemi\Conversioni\obj\Debug\Conversioni.pdb
