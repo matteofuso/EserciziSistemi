@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Common;
 
 namespace Conversioni
 {
@@ -7,46 +6,39 @@ namespace Conversioni
     {
         private static void Main(string[] args)
         {
-            bool[] b = new bool[32];
             int[] dp;
+            bool[] b;
             uint decimale;
-            InserimentoB(b);
-            Console.WriteLine("Il numero intero è {0}", Convert_Binario_To_Decimale(b));
-            Console.WriteLine("Il numero decimale puntato è: {0}", string.Join(".", Convert_Binario_To_Decimale_Puntato(b)));
-            InserimentoDP(out dp);
-            Console.WriteLine("Il numero intero è {0}", Convert_Decimale_Puntato_To_Decimale(dp));
+            // int Convert_Binario_To_Decimale(bool[] b)
+            InserimentoB(out b, "1111111100");
+            Console.WriteLine("Binario to Decimale: {0}", Convert_Binario_To_Decimale(b));
+            // int Convert_Decimale_Puntato_To_Decimale(int[] dp)
+            dp = new int[] { 10, 10, 10, 10 };
+            Console.WriteLine("Decimale Punatato to Decimale: {0}", Convert_Decimale_Puntato_To_Decimale(dp));
+            // int[] Convert_Binario_To_Decimale_Puntato(bool[] b)
+            dp = Convert_Binario_To_Decimale_Puntato(b);
+            Console.WriteLine("Binario to Decimale Puntato: {0}", string.Join(".", dp));
+            // bool[] Convert_Decimale_Puntato_To_Binario(int[] dp)
             b = Convert_Decimale_Puntato_To_Binario(dp);
-            Console.WriteLine("Il numero decimale puntato è: {0}", string.Join(".", Convert_Binario_To_Decimale_Puntato(b)));
-            decimale = uint.MaxValue - 1;
-            dp = Convert_Numero_Decimale_To_Decimale_Puntato(decimale);
-            Console.WriteLine("Il numero decimale puntato è: {0}", string.Join(".", dp));
+            Console.WriteLine("Decimale Puntato to Binario: {0}", string.Join("", b).Replace("True", "1").Replace("False", "0"));
+            // int[] Convert_Numero_Decimale_To_Decimale_Puntato(uint numero)
+            dp = Convert_Numero_Decimale_To_Decimale_Puntato(uint.MaxValue - 3);
+            Console.WriteLine("Decimale to Decimale Puntato: {0}", string.Join(".", dp));
+            // bool[] Convert_Numero_Decimale_To_Binario(uint numero)
+            b = Convert_Numero_Decimale_To_Binario(uint.MaxValue - 3);
+            Console.WriteLine("Decimale to Binario: {0}", string.Join("", b).Replace("True", "1").Replace("False", "0"));
             Console.ReadLine();
         }
-        static void InserimentoB(bool[] b)
+        static void InserimentoB(out bool[] b, string bits)
         {
-            string temp;
-            int j = 0;
-            Console.Write("Inserisci la serie di bit (Massimo 4 byte): ");
-            temp = Console.ReadLine();
-            for (int i = 32 - temp.Length; i < 32; i++)
+            b = new bool[32];
+            int inizio = b.Length - bits.Length;
+            for (int i = 0; i < bits.Length; i++)
             {
-                if (temp[j] == '1')
+                if (bits[i] == '1')
                 {
-                    b[i] = true;
+                    b[inizio + i] = true;
                 }
-                j++;
-            }
-        }
-        static void InserimentoDP(out int[] dp)
-        {
-            string temp;
-            dp = new int[4];
-            Console.Write("Inserisci numero decimale puntato: ");
-            temp = Console.ReadLine();
-            string[] split = temp.Split('.');
-            for (int i = 0; i < split.Length; i++)
-            {
-                dp[i] = Convert.ToInt32(split[i]);
             }
         }
         static int Convert_Binario_To_Decimale(bool[] b)
@@ -116,6 +108,19 @@ namespace Conversioni
                 numero /= 256;
             }
             return dp;
+        }
+        static bool[] Convert_Numero_Decimale_To_Binario(uint numero)
+        {
+            bool[] b = new bool[32];
+            for (int i = b.Length - 1; i >= 0 && numero > 0; i--)
+            {
+                if (numero % 2 == 1)
+                {
+                    b[i] = true;
+                }
+                numero /= 2;
+            }
+            return b;
         }
     }
 }
