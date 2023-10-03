@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 
 namespace Conversioni
 {
@@ -13,6 +14,8 @@ namespace Conversioni
             Console.WriteLine("Il numero decimale puntato è: {0}", string.Join(".", Convert_Binario_To_Decimale_Puntato(b)));
             InserimentoDP(out dp);
             Console.WriteLine("Il numero intero è {0}", Convert_Decimale_Puntato_To_Decimale(dp));
+            b = Convert_Decimale_Puntato_To_Binario(dp);
+            Console.WriteLine("Il numero decimale puntato è: {0}", string.Join(".", Convert_Binario_To_Decimale_Puntato(b)));
             Console.ReadLine();
         }
         static void InserimentoB(bool[] b)
@@ -66,12 +69,12 @@ namespace Conversioni
         static int[] Convert_Binario_To_Decimale_Puntato(bool[] b)
         {
             int[] dp = new int[4];
-            int intero, j = 0, next;
-            for (int i = 0; i < dp.Length; i++)
+            int intero, next;
+            for (int i = dp.Length - 1; i >= 0; i--)
             {
                 intero = 0;
-                next = 8 * (i + 1);
-                for (; j < next; j++)
+                next = (i + 1) * 8;
+                for (int j = i * 8; j < next; j++)
                 {
                     if (b[j])
                     {
@@ -81,6 +84,24 @@ namespace Conversioni
                 dp[i] = intero;
             }
             return dp;
+        }
+        static bool[] Convert_Decimale_Puntato_To_Binario(int[] dp)
+        {
+            bool[] b = new bool[dp.Length * 8];
+            byte numero;
+            for (int i = 0; i < dp.Length; i++)
+            {
+                numero = (byte)dp[i];
+                for (int j = 7; j >= 0 && numero > 0; j--)
+                {
+                    if (numero % 2 == 1)
+                    {
+                        b[j + i * 8] = true;
+                    }
+                    numero /= 2;
+                }
+            }
+            return b;
         }
     }
 }
