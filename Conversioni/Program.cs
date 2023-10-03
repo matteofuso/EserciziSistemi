@@ -9,6 +9,7 @@ namespace Conversioni
         {
             bool[] b = new bool[32];
             int[] dp;
+            uint decimale;
             InserimentoB(b);
             Console.WriteLine("Il numero intero è {0}", Convert_Binario_To_Decimale(b));
             Console.WriteLine("Il numero decimale puntato è: {0}", string.Join(".", Convert_Binario_To_Decimale_Puntato(b)));
@@ -16,6 +17,9 @@ namespace Conversioni
             Console.WriteLine("Il numero intero è {0}", Convert_Decimale_Puntato_To_Decimale(dp));
             b = Convert_Decimale_Puntato_To_Binario(dp);
             Console.WriteLine("Il numero decimale puntato è: {0}", string.Join(".", Convert_Binario_To_Decimale_Puntato(b)));
+            decimale = uint.MaxValue - 1;
+            dp = Convert_Numero_Decimale_To_Decimale_Puntato(decimale);
+            Console.WriteLine("Il numero decimale puntato è: {0}", string.Join(".", dp));
             Console.ReadLine();
         }
         static void InserimentoB(bool[] b)
@@ -102,6 +106,16 @@ namespace Conversioni
                 }
             }
             return b;
+        }
+        static int[] Convert_Numero_Decimale_To_Decimale_Puntato(uint numero)
+        {
+            int[] dp = new int[4];
+            for (int i = 0; i < dp.Length && numero > 0; i++)
+            {
+                dp[dp.Length - i - 1] = (int)(numero % 256);
+                numero /= 256;
+            }
+            return dp;
         }
     }
 }
