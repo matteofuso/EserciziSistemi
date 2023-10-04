@@ -8,7 +8,6 @@ namespace Conversioni
         {
             int[] dp;
             bool[] b;
-            uint decimale;
             // int Convert_Binario_To_Decimale(bool[] b)
             InserimentoB(out b, "1111111100");
             Console.WriteLine("Binario to Decimale: {0}", Convert_Binario_To_Decimale(b));
@@ -43,38 +42,37 @@ namespace Conversioni
         }
         static int Convert_Binario_To_Decimale(bool[] b)
         {
-            int intero = 0, len = b.Length - 1;
+            int intero = 0;
             for (int i = 0; i < b.Length; i++)
             {
                 if (b[i])
                 {
-                    intero += (int)Math.Pow(2, len - i);
+                    intero += (int)Math.Pow(2, b.Length - i - 1);
                 }
             }
             return intero;
         }
         static int Convert_Decimale_Puntato_To_Decimale(int[] dp)
         {
-            int intero = 0, len = dp.Length - 1;
+            int intero = 0;
             for (int i = 0; i < dp.Length; i++)
             {
-                intero += dp[len - i] * (int)Math.Pow(256, i);
+                intero += dp[dp.Length - i - 1] * (int)Math.Pow(256, i);
             }
             return intero;
         }
         static int[] Convert_Binario_To_Decimale_Puntato(bool[] b)
         {
             int[] dp = new int[4];
-            int intero, next;
+            int intero;
             for (int i = dp.Length - 1; i >= 0; i--)
             {
                 intero = 0;
-                next = (i + 1) * 8;
-                for (int j = i * 8; j < next; j++)
+                for (int j = 0; j < 8; j++)
                 {
-                    if (b[j])
+                    if (b[j + 8 * i])
                     {
-                        intero += (int)Math.Pow(2, next - j - 1);
+                        intero += (int)Math.Pow(2, 7 - j);
                     }
                 }
                 dp[i] = intero;
